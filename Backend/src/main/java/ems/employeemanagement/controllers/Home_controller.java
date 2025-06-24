@@ -1,6 +1,7 @@
 package ems.employeemanagement.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.support.ResourceTransactionManager;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -8,8 +9,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ResponseBody
 public class Home_controller {
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String HomePage(){
         return "Wolcom to Home page";
     }
+
+    @GetMapping("/dashboard")
+    public String dashboard(){return "Login successfull";}
 }

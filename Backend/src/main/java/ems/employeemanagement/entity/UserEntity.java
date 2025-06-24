@@ -15,6 +15,7 @@ public class UserEntity {
     private long Employee_ID;
     private String Employee_Name;
     private String Employee_Email;
+    private String Employee_password;
     private int Employee_Age;
     private String Employee_Dept;
     private long Employee_Salary;
@@ -58,4 +59,11 @@ public class UserEntity {
         Employee_Salary = employee_Salary;
     }
 
+
+    public String getEmployee_password() {
+        return Employee_password;
+    }
+    public void setEmployee_password(String employee_password) {
+        Employee_password = employee_password;
+    }
 }
