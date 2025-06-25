@@ -8,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,6 +27,8 @@ public class SecurityConfigs {
                 authz.requestMatchers(HttpMethod.POST,"/insert").permitAll().requestMatchers("/**").authenticated().anyRequest().permitAll()
         ).formLogin(form->form.permitAll().defaultSuccessUrl("/dashboard"))
                 .csrf(AbstractHttpConfigurer::disable);
+                authz.requestMatchers("/**").authenticated().requestMatchers("/fetch").permitAll()
+        ).formLogin(AbstractAuthenticationFilterConfigurer::permitAll);
         return http.build();
     }
 
