@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.web.bind.annotation.*;
 
 import ems.employeemanagement.entity.UserEntity;
@@ -16,6 +19,9 @@ import ems.employeemanagement.repository.Employee_Interface;
 public class EMS_Controllers {
     @Autowired
     private Employee_Interface employee_Interface;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     @GetMapping("/fetch")
     public List<UserEntity> getUsers(){
         return employee_Interface.findAll();
@@ -23,6 +29,7 @@ public class EMS_Controllers {
 
     @PostMapping("/insert")
     public UserEntity insertUser(@RequestBody UserEntity User){
+        User.setEmployee_password(passwordEncoder.encode(User.getEmployee_password()));
         return employee_Interface.save(User);
     }
 

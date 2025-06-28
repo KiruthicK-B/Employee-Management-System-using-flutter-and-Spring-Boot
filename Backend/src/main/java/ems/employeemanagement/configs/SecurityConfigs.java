@@ -27,8 +27,7 @@ public class SecurityConfigs {
                 authz.requestMatchers(HttpMethod.POST,"/insert").permitAll().requestMatchers("/**").authenticated().anyRequest().permitAll()
         ).formLogin(form->form.permitAll().defaultSuccessUrl("/dashboard"))
                 .csrf(AbstractHttpConfigurer::disable);
-                authz.requestMatchers("/**").authenticated().requestMatchers("/fetch").permitAll()
-        ).formLogin(AbstractAuthenticationFilterConfigurer::permitAll);
+           
         return http.build();
     }
 
