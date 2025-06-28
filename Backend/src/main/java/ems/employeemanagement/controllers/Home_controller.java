@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ResponseBody
 public class Home_controller {
 
+
     @GetMapping("/home")
     public String HomePage(){
         return "Wolcom to Home page";
